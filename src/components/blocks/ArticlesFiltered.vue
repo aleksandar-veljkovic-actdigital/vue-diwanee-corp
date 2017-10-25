@@ -1,9 +1,6 @@
 <template>
   <div id="article-list">
 
-    --------------------------
-    <div>showreel :: boban :: {{ boban }}</div>
-    <div>showreel :: $router.params.boban :: {{ boban }}</div>
     <form>
 
       <select id='publication-select' v-model="selected.publications" v-on:change="filtersChanged()">
@@ -16,27 +13,35 @@
         <option v-for="brand in filters.brands" :value=brand.id>{{brand.name}}</option>
       </select>
 
-      <select id='type-select' v-model="selected.types" v-on:change="filtersChanged()">
-        <option value="0">by type</option>
-        <option v-for="type in filters.types" :value=type.id>{{type.name}}</option>
-      </select>
-
       <select id='category-select' v-model="selected.categories" v-on:change="filterCategoryChanged();filtersChanged()">
         <option value="0">by category</option>
         <option v-for="category in filters.categories" :value=category.id>{{category.name}}</option>
       </select>
 
+      <select id='influencer-select' v-model="selected.influencers" v-on:change="filtersChanged()">
+        <option value="0">by influencer</option>
+        <option v-for="influencer in filters.influencers" :value=influencer.id>{{influencer.name}}</option>
+      </select>
+
+      <!--
       <select id='subcategory-select' v-model="selected.subcategories" v-on:change="filtersChanged();">
         <option value="0"> - </option>
         <option v-for="subcategory in filters.subcategoriesDisplay" :value=subcategory.id>{{subcategory.name}}</option>
       </select>
+      -->
 
     </form>
 
     <section>
       <article v-for="article in articlesDisplay">
+
         <h2>{{article.title}}</h2>
+        {{setDataImg(article)}} <!-- opens posibility for asinc image (e.g. kaltura poster cover) -->
+        <img :src=article.img alt='' />
+
+        <hr />
       </article>
+
     </section>
 
   </div>
@@ -52,7 +57,7 @@ export default {
     window.dbg = this;
   },
 
-  props: ['boban'],
+  props: ['query'],
 
   data () {
     return {
@@ -61,14 +66,14 @@ export default {
       selected: {
         publications: 0,
         brands: 0,
-        types: 0,
+        influencers: 0,
         categories: 0,
         subcategories: 0
       },
       filters: {
         publications: [],
         brands: [],
-        types: [],
+        influencers: [],
         categories: [],
         subcategories: [],
         subcategoriesDisplay: []
@@ -76,8 +81,30 @@ export default {
       tags: [],
     }
   },
+/*
+  watch: {
+    'articlesDisplay.0.img': {
+      handler: function(){  console.log('--'); }
+    }
+  },
+*/
+/*
+  watch: {
+    'img': function(){console.log('watch')},
+    'articlesDisplay.img': function(){console.log('watch.')},
+    'articlesDisplay.0.img': function(){  console.log('watch articlesDisplay.0.img'); }
+
+  },
 
 
+  computed: {
+    'img': function(){console.log('computed')},
+    'articlesDisplay.img': function(){console.log('computed.')},
+    'articlesDisplay.0.img': function(){  console.log('computed articlesDisplay.0.img'); }
+
+  },
+
+*/
   methods: {
 
     //
@@ -100,6 +127,9 @@ export default {
         .then(function(response){
           _this.tags = response.data;
           _this.parseFilters();
+          if (_this.$route.query.filter) {
+            _this.selected = JSON.parse(_this.$route.query.filter);
+          }
         });
     },
 
@@ -119,8 +149,8 @@ export default {
           case 'brand' :
             filters.brands.push(tag);
             break;
-          case 'type' :
-            filters.types.push(tag);
+          case 'influencer' :
+            filters.influencers.push(tag);
             break;
           case 'category' :
             filters.categories.push(tag);
@@ -143,6 +173,7 @@ export default {
       var filterTags = Object.values(_this.selected)
         .map( (tagId, ix) => {return (!!parseInt(tagId)) ? parseInt(tagId) : false;} )
         .filter( tag => {return (!!tag)} );
+      __this.$router.push({ query: { filter: JSON.stringify(_this.selected) }})
       // if filters are unselected
       if (filterTags.length === 0) {
         _this.articlesDisplay = _this.articlesAll.slice(0);
@@ -191,7 +222,33 @@ export default {
         }
       });
       return _return;
-    }
+    },
+
+    articleImages: function(article) {
+      return article.elements.reduce(function(_imgs, element) {
+        switch (element.type) {
+          case 'diwanee_image' :
+            _imgs.diwanee_image.push( element.content.file.url );
+            break;
+          case 'slider_image' :
+            _imgs.slider_image.push( element.content.file.url );
+            break;
+          case 'video' :
+            _imgs.video.push( element.content.remote_id );
+            break;
+        }
+        return _imgs
+      }, {diwanee_image:[],slider_image:[],video:[]});
+    },
+
+    setDataImg: function(article) {
+
+      var imgs = this.articleImages(article);
+      if (!!imgs.diwanee_image[0]) article.img = imgs.diwanee_image[0];
+      else if (!!imgs.slider_image[0]) article.img = imgs.slider_image[0];
+      else if (!!imgs.video[0]) article.img =  'https://img.youtube.com/vi/'+imgs.video[0]+'/hqdefault.jpg';
+      else article.img =  "http://via.placeholder.com/350x150";
+    },
 
   },
 

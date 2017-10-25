@@ -1,19 +1,15 @@
+
 <template>
+
   <div id="page--showreel">
 
-    <div>showreel :: $router.query :: <strong>{{ $router.query }}</strong></div>
-    <div>showreel :: $router.params :: <strong>{{ $router.params }}</strong></div>
-
-
-    <div>showreel :: path0 :: <strong>{{ params.path0 }}</strong></div>
-    <div>showreel :: query :: <strong>{{ query.boban }}</strong></div>
-
-
-
-    <!--ArticlesFiltered :boban="boban" /-->
+    <ArticlesFiltered :query="query" />
 
   </div>
+
 </template>
+
+
 
 <script>
 
@@ -35,8 +31,8 @@ export default {
       }
     },
     props: [
-      'params',
-      'query'
+      'query',
+      //'params',
     ],
 
   }
