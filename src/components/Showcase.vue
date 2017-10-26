@@ -1,7 +1,9 @@
 
 <template>
 
-  <div id="page--showreel">
+  <div id="page--showcase">
+
+    <h1></h1>
 
     <ArticlesFiltered :query="query" />
 
@@ -22,7 +24,7 @@ export default {
 
 
   created() {
-    window.__this = this;
+    window.__showcase = this
   },
 
   data () {

@@ -32,14 +32,18 @@
 
     </form>
 
+
     <section>
       <article v-for="article in articlesDisplay">
 
-        <h2>{{article.title}}</h2>
-        {{setDataImg(article)}} <!-- opens posibility for asinc image (e.g. kaltura poster cover) -->
-        <img :src=article.img alt='' />
 
-        <hr />
+        {{setDataImg(article)}} <!-- opens posibility for asinc image (e.g. kaltura poster cover) -->
+        <div class="img-w">
+          <img :src=article.img alt='' />
+        </div>
+        <h2>{{article.title}}</h2>
+        <h6>{{article.content_description}}</h6>
+
       </article>
 
     </section>
@@ -47,17 +51,87 @@
   </div>
 </template>
 
+
+
+<style lang="scss" scoped>
+
+    @import "../../assets/sass/mixins.scss";
+
+    //$tablet: "(min-width: 768px) and (max-width: 1023px)";
+    //$desktop: "(min-width: 1024px)";
+
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      p {
+        font-size: 18px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      p {
+        font-size: 20px;
+      }
+    }
+
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+
+
+article {
+  position: relative;
+  overflow: hidden;
+  .img-w {
+    padding-bottom: #{ (200/350) * 100%};
+    overflow: hidden;
+    position: relative;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+</style>
+
+
+
+
+
 <script>
 
 export default {
   created() {
+
+
     this.getTags();
     this.getArticles();
 
-    window.dbg = this;
+
+
+
+    window.__articlesFiltered = this;
   },
 
-  props: ['query'],
+  props: [
+    'query',
+  ],
 
   data () {
     return {
@@ -81,7 +155,7 @@ export default {
       tags: [],
     }
   },
-/*
+/* @toDo
   watch: {
     'articlesDisplay.0.img': {
       handler: function(){  console.log('--'); }
@@ -117,8 +191,8 @@ export default {
         .then(function(response){
           _this.articlesAll = response.data
           _this.articlesDisplay = response.data
+          _this.filtersChanged();
         });
-
     },
 
     getTags: function(){
@@ -173,7 +247,7 @@ export default {
       var filterTags = Object.values(_this.selected)
         .map( (tagId, ix) => {return (!!parseInt(tagId)) ? parseInt(tagId) : false;} )
         .filter( tag => {return (!!tag)} );
-      __this.$router.push({ query: { filter: JSON.stringify(_this.selected) }})
+      _this.$router.push({ query: { filter: JSON.stringify(_this.selected) }})
       // if filters are unselected
       if (filterTags.length === 0) {
         _this.articlesDisplay = _this.articlesAll.slice(0);
@@ -228,13 +302,13 @@ export default {
       return article.elements.reduce(function(_imgs, element) {
         switch (element.type) {
           case 'diwanee_image' :
-            _imgs.diwanee_image.push( element.content.file.url );
+            _imgs.diwanee_image.push( element.data.file.url );
             break;
           case 'slider_image' :
-            _imgs.slider_image.push( element.content.file.url );
+            _imgs.slider_image.push( element.data.file.url );
             break;
           case 'video' :
-            _imgs.video.push( element.content.remote_id );
+            _imgs.video.push( element.data.remote_id );
             break;
         }
         return _imgs
@@ -247,7 +321,7 @@ export default {
       if (!!imgs.diwanee_image[0]) article.img = imgs.diwanee_image[0];
       else if (!!imgs.slider_image[0]) article.img = imgs.slider_image[0];
       else if (!!imgs.video[0]) article.img =  'https://img.youtube.com/vi/'+imgs.video[0]+'/hqdefault.jpg';
-      else article.img =  "http://via.placeholder.com/350x150";
+      else article.img =  "http://via.placeholder.com/350x200";
     },
 
   },
@@ -255,24 +329,3 @@ export default {
 }
 
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>

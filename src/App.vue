@@ -1,23 +1,48 @@
 <template>
   <div id="app">
     <!-- layout goes hire -->
-    <router-view/>
+
+    <header>
+      <img class='logo-img' src="./assets/img/diwanee-logo--dark.svg"/>
+    </header>
+
+    <main>
+      <router-view/>
+    </main>
+
+    <footer>
+
+    </footer>
+
+
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app',
+    config:{
+      breakPoints: {
+        medium: 640,
+        large: 1024
+      }
+    }
+  }
 </script>
 
-<style>
+<style lang="scss" scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  text-align: left;
+  color: black;
+
+  header {
+    .logo-img {
+      width: 150px;
+      display: block;
+    }
+  }
 }
 </style>
