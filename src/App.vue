@@ -2,7 +2,9 @@
   <div id="app">
     <!-- layout goes hire -->
     <header>
-      <img class='logo-img' src="./assets/img/diwanee-logo--dark.svg"/>
+      <router-link :to='{name:"Diwanee Showcase"}'>
+        <img class='logo-img' src="./assets/img/diwanee-logo--dark.svg"/>
+      </router-link>
     </header>
     <main>
       <router-view/>

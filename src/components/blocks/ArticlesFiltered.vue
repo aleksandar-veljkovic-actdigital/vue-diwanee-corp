@@ -203,7 +203,6 @@ methods: {
     .then(function(response){
       _this.articlesAll = response.data
       _this.articlesDisplay = response.data
-      _this.filtersChanged();
     });
   },
 
@@ -214,7 +213,7 @@ methods: {
       _this.tags = response.data;
       _this.parseFilters();
       if (_this.$route.query.filter) {
-        _this.selected = JSON.parse(_this.$route.query.filter);
+        //_this.selected = JSON.parse(_this.$route.query.filter);
       }
     });
   },
@@ -259,7 +258,7 @@ methods: {
     var filterTags = Object.values(_this.selected)
     .map( (tagId, ix) => {return (!!parseInt(tagId)) ? parseInt(tagId) : false;} )
     .filter( tag => {return (!!tag)} );
-    _this.$router.push({ query: { filter: JSON.stringify(_this.selected) }})
+    //_this.$router.push({ query:  _this.selected })
     // if filters are unselected
     if (filterTags.length === 0) {
       _this.articlesDisplay = _this.articlesAll.slice(0);
