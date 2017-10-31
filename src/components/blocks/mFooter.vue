@@ -60,6 +60,13 @@
 @import "../../assets/sass/footer";
 @import "../../assets/sass/sections";
 
-
+footer {
+  background: #f8f8f8;
+  padding-top: 7%;
+  .footer-copy {
+      margin-bottom: 0;
+      padding-bottom: 8%;
+  }
+}
 
 </style>
