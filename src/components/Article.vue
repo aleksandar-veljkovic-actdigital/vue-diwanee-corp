@@ -1,4 +1,4 @@
-g
+
 <template>
 
   <div id="page--article">

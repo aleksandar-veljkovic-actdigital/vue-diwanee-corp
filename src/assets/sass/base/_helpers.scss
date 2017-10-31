@@ -1,0 +1,57 @@
+.elem-center {
+  display: block;
+  text-align: center;
+  h2 {
+    display: inline-block;
+  }
+}
+.arr-go {
+  float: right;
+  margin-right: 15px;
+  background: url(../../assets/img/arrow-visit.svg);
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-ransform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  width: 20px;
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.text-align--left {
+  text-align: left;
+}
+.no-scroll {
+  overflow: hidden;
+}
+body.no-scroll {
+	// margin-right: 15px;
+}
+.white-mask {
+	background: rgba(255, 255, 255, 0.97);
+    position: fixed;
+    width: 8000px;
+    height: 10px;
+    top: 0;
+    z-index: 98;
+    right: -18px;
+    // transform: rotateZ(48deg) translateX(0%) translateY(-27%);
+	transform: rotateZ(35deg) translateY(0%);
+	-ms-transform: rotateZ(35deg) translateY(0%);
+	-moz-transform: rotateZ(35deg) translateY(0%);
+	-o-transform: rotateZ(35deg) translateY(0%);
+	transform-origin: bottom right;
+    /* top: 275px; */
+    // bottom: 1000px;
+    top: 0;
+}
+.font--roboto {
+	font-family: $text__family--Roboto;
+    font-weight: 300;
+}

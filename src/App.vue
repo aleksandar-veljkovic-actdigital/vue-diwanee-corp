@@ -9,16 +9,23 @@
     <main>
       <router-view/>
     </main>
-    <footer>
-    </footer>
+
+    <mFooter />
+
   </div>
 </template>
 
 
 
 <script>
+
+  import mFooter from './components/blocks/mFooter'
+
   export default {
     name: 'app',
+    components: {
+      mFooter
+    }
   }
 </script>
 
@@ -34,12 +41,14 @@
 
   body {
     margin: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: $sans;
     font-weight: 300;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: $serif;
   }
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: left;

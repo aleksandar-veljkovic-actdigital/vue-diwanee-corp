@@ -1,0 +1,125 @@
+.section {
+  display: block;
+  @extend .clearfix;
+}
+.section--brands {
+  @extend .section;
+}
+.section--audience {
+  margin-bottom: 10%;
+  h2 {
+    position: relative;
+    left: -61px;
+    top: -27px;
+    margin-bottom: 20%;
+    @include breakpoint(mobile) {
+      position: relative;
+      left: -2px;
+      top: -109px;
+      margin-bottom: 20%;
+    }
+  }
+  // margin-bottom:10%;
+  .circle img {
+    width: 200px;
+    margin-left: 45px;
+    @include breakpoint(mobile) {
+      position: relative;
+      margin: 0;
+      left: -9%;
+      width: 54%;
+      float: left;
+    }
+  }
+  @include breakpoint(mobile) {
+    margin-bottom: 40%;
+    // padding-top: 37%;
+      padding-top: 6%;
+  }
+}
+.section--showreel {
+  h2 {
+    margin-bottom: 6.6%;
+    @include breakpoint(mobile) {
+      margin-bottom: 15.6%;
+    }
+  }
+  margin-bottom: 17%;
+  @include breakpoint(mobile) {
+    margin-bottom: 47%;
+  }
+}
+.section--detail-intro {
+  .b-button {
+    margin-bottom: 11%;
+  }
+  .b-social__item {
+    transition:opacity 399ms;
+  }
+  .b-social__item:hover {
+    opacity: 0.6;
+  }
+}
+.section--marketing-service {
+  padding: 0 5%;
+}
+.section--footer {
+  background: #f8f8f8;
+  padding-top:7%;
+}
+.section--contact {
+  margin-bottom: 7%;
+  .wrapper {
+    max-width: 1100px;
+    @include breakpoint(mobile) {
+      left: 0;
+    }
+  }
+  h1 {
+    margin-bottom: 10%;
+    @include breakpoint(mobile) {
+      @include fontSize(35px);
+      margin-bottom: 15%;
+    }
+  }
+  .b-division--half {
+    padding:0;
+    margin-bottom: 5%;
+    @include breakpoint(mobile) {
+      // padding:0 5%;
+    }
+  }
+  // .b-division__item:first-child {
+  //   padding:0 5%;
+  // }
+  .b-division__item:last-child {
+    @include breakpoint(mobile) {
+      margin-left:0 !important;
+    }
+  }
+  .b-contacts__item, .b-contacts__item:nth-of-type(3) {
+    width: 100%;
+    margin-bottom: 13%;
+    h4 {
+      // font-weight: normal;
+      margin-bottom: 3%;
+      font-family: $text__family--Playfair;
+    }
+  }
+  .b-division__item {
+    img {
+      width: 100%;
+      width: 156%;
+    }
+  }
+  .b-division--30 {
+    @include breakpoint(mobile) {
+      margin-bottom: 20%;
+    }
+  }
+  .b-contacts__item {
+    @include breakpoint(mobile) {
+      margin-bottom: 5%;
+    }
+  }
+}
