@@ -14,6 +14,8 @@ h1#page-title {
 }
 
 @mixin gutter {
-  margin-left: 5.4%;
-  margin-right: 5.4%;
+  $gutter: 5.4%;
+  margin-left: $gutter;
+  margin-right: $gutter;
+  width: 100 - (2*$gutter)
 }

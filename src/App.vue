@@ -26,6 +26,10 @@
 
   @import "assets/sass/app.scss";
 
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     font-family: "Roboto", sans-serif;
