@@ -12,6 +12,11 @@
 
   @import "../../assets/sass/app.scss";
 
+  .in-article-list {
+    @include gutter;
+    margin-bottom: 1rem;
+  }
+
 </style>
 
 <script>

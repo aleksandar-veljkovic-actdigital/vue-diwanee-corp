@@ -13,6 +13,7 @@
 
   .in-article-image {
     @include gutter;
+    margin-bottom: 1rem;
     img {
       width: 100%;
     }

@@ -20,6 +20,7 @@
 .in-article-slider {
   @include gutter;
   position: relative;
+  margin-bottom: 1rem;
   svg.space-holder {
     width: 1px;
     min-width: 100%;
@@ -75,10 +76,8 @@ import Swipe from 'swipejs'
 export default {
 
   mounted() {
-    console.log(this.id)
-    console.log(Swipe)
-    window.sss = window.sss || {}
-    window.sss[this.id] = new Swipe(document.getElementById(this.id), {draggable:true, continuous: false})
+    window.sss = window.sss || {};
+    window.sss[this.id] = new Swipe(document.getElementById(this.id), {draggable:true, continuous: false});
   },
 
   props: [

@@ -13,6 +13,7 @@
  .in-article-video {
    @include gutter;
    position: relative;
+   margin-bottom: 1rem;
    iframe.yt-video {
      width: 1px;
      min-width: 100%;

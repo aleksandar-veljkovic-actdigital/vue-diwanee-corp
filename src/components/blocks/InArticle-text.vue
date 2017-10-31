@@ -10,6 +10,7 @@
 
   .in-article-text {
     @include gutter;
+    margin-bottom: 1rem;
   }
 
 </style>

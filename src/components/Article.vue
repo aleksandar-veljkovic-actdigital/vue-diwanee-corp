@@ -1,9 +1,11 @@
-
+g
 <template>
 
   <div id="page--article">
     <h1 id="page-title">{{article.title}}</h1>
-    <component v-for="component in bodyElements" v-bind:is="component.type" :data="component.data"></component>
+    <div v-for="cpnt in bodyElements">
+      <component  v-bind:is="cpnt.type" :data="cpnt.data"></component>
+    </div>
   </div>
 
 </template>
@@ -65,16 +67,21 @@
         var _this = this;
         _this.bodyElements = [];
         _this.bodyElements = article.elements.reduce(function(total, element, ix){
-          if (element.type === "slider_image") {
-            if (article.elements[ix-1].type !== "slider_image") {
-              total.push( {type:"sliderComponent", data:[element]} );
-            }
-            else {
-              total[total.length-1].data.push(element);
-            }
-          }
-          else {
-            total.push( {type:element.type+"Component", data:element} )
+          switch (element.type) {
+            case "slider_image" :
+              if (article.elements[ix-1].type !== "slider_image") {
+                total.push( {type:"sliderComponent", data:[element]} );
+              }
+              else {
+                total[total.length-1].data.push(element);
+              }
+              break;
+            case "diwanee_image" :
+            case "list" :
+            case "text" :
+            case "video" :
+              total.push( {type:element.type+"Component", data:element} );
+              break;
           }
           return total
         }, []);
