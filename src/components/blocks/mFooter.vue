@@ -49,6 +49,15 @@
 </template>
 
 <style lang="scss" scoped>
+
+@function cvp($target, $container) {
+  @return ($target / $container) * 100vw;
+}
+@function calculateRem($size) {
+  $remSize: $size / $base__font-size;
+  @return #{$remSize}rem;
+}
+
 @import "../../assets/sass/app.scss";
 
 @import "../../assets/sass/base/breakpoints";
@@ -63,9 +72,25 @@
 footer {
   background: #f8f8f8;
   padding-top: 7%;
+  font-weight: 400;
+  line-height: 16px;
+  p {
+    line-height: 23px;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $serif;
+    line-height: 23px;
+  }
+  h4 {
+    font-size: 23px;
+    font-weight: 700;
+  }
   .footer-copy {
       margin-bottom: 0;
       padding-bottom: 8%;
+      p {
+        line-height: 13px;
+      }
   }
 }
 
