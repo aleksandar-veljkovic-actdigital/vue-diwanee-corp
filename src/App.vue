@@ -7,7 +7,13 @@
       </router-link>
     </header>
     <main>
-      <router-view/>
+
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"/>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"/>
+
+
     </main>
 
     <mFooter />
@@ -48,6 +54,10 @@
     font-family: $serif;
   }
 
+  h1 {
+    @include gutter;
+  }
+
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -56,7 +66,7 @@
     header {
       min-height: 90px;
       .logo-img {
-        width: 103px;
+        width: 143px;
         padding: 20px;
         display: block;
       }

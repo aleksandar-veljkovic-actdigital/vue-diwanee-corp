@@ -43,7 +43,7 @@
   </div>
   <div class="footer-copy">
     <p>Copyright &copy 2017 Diwanee All Rights resereved</p>
-    <div class='bck-to-top'>back to top<img src="../../assets/img/footer/bcktotop.svg" alt=""></div>
+    <div v-on:click="toTop" class='bck-to-top'>back to top<img src="../../assets/img/footer/bcktotop.svg" alt=""></div>
   </div>
 </footer>
 </template>
@@ -95,3 +95,15 @@ footer {
 }
 
 </style>
+
+<script>
+
+  export default {
+    methods: {
+      toTop: function(){
+        window.scrollTo(0, 0);
+      }
+    }
+  }
+  
+</script>

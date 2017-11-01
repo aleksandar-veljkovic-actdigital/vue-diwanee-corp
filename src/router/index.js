@@ -14,6 +14,9 @@ export default new Router({
       path: '/',
       name: 'Diwanee Showcase',
       component: Showcase,
+      meta: {
+        keepAlive: true,
+      },
       props: (route) => ({
         query: route.query,
         //params: route.params
@@ -33,5 +36,9 @@ export default new Router({
       name: "404 not found",
       component: Error404,
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    console.log('sb')
+    return { x: 0, y: 0 }
+  }
 });
