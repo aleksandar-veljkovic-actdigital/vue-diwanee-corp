@@ -12,9 +12,18 @@
 
   @import "../../assets/sass/app.scss";
 
-  .in-article-list {
-    @include gutter;
-    margin-bottom: 1rem;
+  @include device(mobile) {
+    .in-article-list {
+      @include gutter;
+      margin-bottom: $bottom;
+    }
+  }
+
+  @include device(desktop) {
+    .in-article-list {
+      @include narrow;
+      margin-bottom: $bottom;
+    }
   }
 
 </style>

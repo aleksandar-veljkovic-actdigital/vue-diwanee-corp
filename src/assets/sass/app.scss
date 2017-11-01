@@ -8,12 +8,21 @@ $desktop: "(min-width: 1024px)";
 $serif: "Playfair Display", serif;
 $sans: "Roboto", sans-serif;
 
+$bottom: 2rem;
+
 
 @mixin gutter {
   $gutter: 5.4%;
   margin-left: $gutter;
   margin-right: $gutter;
   width: 100 - (2*$gutter)
+}
+
+@mixin narrow {
+  @include gutter;
+  $p: 19%;
+  padding-left: $p;
+  padding-right: $p;
 }
 
 @mixin device($device){

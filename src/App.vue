@@ -60,6 +60,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: left;
     color: black;
+    max-width: 1600px;
+    margin: 0 auto;
   }
 
 
@@ -106,11 +108,10 @@
       margin-bottom: 2.0rem;
     }
     #page-preamble {
-      @include gutter;
+      @include narrow;
+
       text-align: center;
-      $p: 19%;
-      padding-left: $p;
-      padding-right: $p;
+
       margin-bottom: 5.7rem;
       margin-top: 0;
       font-weight: normal;

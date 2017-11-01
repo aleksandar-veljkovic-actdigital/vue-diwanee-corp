@@ -1,5 +1,7 @@
 <template>
 
+  <div>
+
   <div class="in-article-slider">
     <svg class="space-holder" viewBox="0 0 350 200"></svg>
     <div :id=id class="swipe">
@@ -11,6 +13,14 @@
     </div>
   </div>
 
+  <div class="in-article-slider--dots">
+    <svg v-for="slide in data" class="i-a-s--dot" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+    </svg>
+  </div>
+
+  </div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -20,7 +30,6 @@
 .in-article-slider {
   @include gutter;
   position: relative;
-  margin-bottom: 1rem;
   svg.space-holder {
     width: 1px;
     min-width: 100%;
@@ -63,6 +72,16 @@
     }
   }
 
+}
+
+.in-article-slider--dots {
+  margin-bottom: $bottom;
+  text-align: center;
+  .i-a-s--dot {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+  }
 }
 
 
