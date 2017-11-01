@@ -2,19 +2,12 @@ $tablet: "(min-width: 768px) and (max-width: 1023px)";
 $desktop: "(min-width: 1024px)";
 
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900");
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,300);
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900");
 //@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700");
 
 $serif: "Playfair Display", serif;
 $sans: "Roboto", sans-serif;
 
-h1#page-title {
-  font-family: "Playfair Display", serif;
-  font-size: 1.7rem;
-  text-align: center;
-  margin-top: 0;
-  margin: 0 0 2.4rem;
-}
 
 @mixin gutter {
   $gutter: 5.4%;
@@ -23,35 +16,20 @@ h1#page-title {
   width: 100 - (2*$gutter)
 }
 
+@mixin device($device){
 
+  @if $device == mobile {
+    @media (max-width: 959px) {@content;}
+  }
 
+  /*
+  @if $device == tablet {
+    @media (min-width: 769px), (min-width: 768.1px) {@content}
+  }
+  */
 
-// Vasilie's variables
-$text__family--Roboto: "Roboto", sans-serif;
-@mixin fontSize($size) {
-  font-size: $size; //Fallback in px
-  font-size: calculateRem($size);
-}
-@mixin breakpoint($point) {
-  @if $point == littlemobile {
-     @media (max-width: 600px)  { @content ; }
+  @if $device == desktop {
+    @media (min-width: 960px), (min-width: 959.1px) {@content;}
   }
-  @if $point == typoMax {
-     @media (max-width: 1600px)  { @content ; }
-  }
-  @if $point == mobile {
-     @media (max-width: 700px)  { @content ; }
-  }
-  @if $point == tablet {
-     @media (max-width: 1025px)  { @content ; }
-  }
-  @if $point == laptop {
-     @media (max-width: 1450px)  { @content ; }
-  }
-  @if $point == iphone4 {
-     @media (min-device-width : 320px) and (max-height: 450px) { @content ; }
-  }
-  @if $point == iphone6 {
-     @media (min-device-width : 375px) and (max-device-width : 667px) { @content ; }
-  }
+
 }

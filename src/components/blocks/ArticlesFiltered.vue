@@ -58,39 +58,6 @@
 
 @import "../../assets/sass/app.scss";
 
-form#articles-filters {
-  @include gutter;
-  margin-bottom: 1.5rem;
-  h3 {
-    margin: 0 0 .8rem;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-
-  }
-  .select {
-    width: 100%;
-    height: 2.5rem;
-    text-align: center;
-    text-align-last:center;
-    background-color: white;
-    border: 1px solid red;
-    margin-bottom: 1.1rem;
-    position: relative;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    &::-ms-expand {
-      display: none;
-    }
-    &:focus {
-      outline: none;
-    }
-    .option {
-      text-align: center;
-      width: 100%;
-    }
-  }
-}
 a, a:visited,
 a:visited, a:visited h2 {
   //color: #42b983;
@@ -98,35 +65,169 @@ a:visited, a:visited h2 {
   outline: 0 solid transparent;
   color: black;
 }
-article {
-  @include gutter;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 1.1rem;
-  .img-w {
-    padding-bottom: #{ (200/350) * 100%};
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 0.9rem;
-    img {
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
+
+
+@include device(mobile){
+  form#articles-filters {
+    @include gutter;
+    margin-bottom: 1.5rem;
+    h3 {
+      margin: 0 0 .8rem;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-family: $sans;
+      font-weight: 500;
+
+    }
+    .select {
       width: 100%;
+      height: 2.5rem;
+      text-align: center;
+      text-align-last:center;
+      background-color: white;
+      border: 1px solid red;
+      margin-bottom: 1.1rem;
+      position: relative;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      &::-ms-expand {
+        display: none;
+      }
+      &:focus {
+        outline: none;
+      }
+      .option {
+        text-align: center;
+        width: 100%;
+      }
     }
   }
-  h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.4rem;
-    margin: 0 0 0rem;
+  section {
+    article {
+      @include gutter;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.1rem;
+      .img-w {
+        padding-bottom: #{ (200/350) * 100%};
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 0.9rem;
+        img {
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          width: 100%;
+        }
+      }
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        margin: 0 0 0rem;
+      }
+      h6 {
+        font-weight: normal;
+        font-size: 1rem;
+        font-weight: 300;
+        margin: 0 0 0rem;
+        font-family: $sans;
+      }
+    }
   }
-  h6 {
-    font-weight: normal;
-    font-size: 1rem;
-    font-weight: 300;
-    margin: 0 0 0rem;
+}
+
+
+@include device(desktop){
+  form#articles-filters {
+    @include gutter;
+    margin-bottom: 1.5rem;
+    padding-left: 12.5%;
+    h3 {
+      margin: 0 0 1.8rem;
+      text-transform: uppercase;
+      font-size: 1rem;
+      font-family: $sans;
+      font-weight: 500;
+    }
+    .select {
+      width: 160px;
+      height: 2.5rem;
+      margin: 0rem 16px 2.4rem 0;
+      text-align: center;
+      text-align-last:center;
+      background-color: white;
+      border: 1px solid red;
+      position: relative;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      &:last-child {
+        margin-right: 0;
+      }
+      &::-ms-expand {
+        display: none;
+      }
+      &:focus {
+        outline: none;
+      }
+      .option {
+        text-align: center;
+        width: 100%;
+      }
+    }
   }
+
+  section {
+    @include gutter;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    article {
+      $gut: 1%;
+      width: 31.33%;
+      margin-right: 3%;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.1rem;
+      text-align: left;
+      &:nth-child(3n+3) {
+        margin-right: 0%;
+      }
+      .img-w {
+        padding-bottom: #{ (200/350) * 100%};
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 0.9rem;
+        img {
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          width: 100%;
+        }
+      }
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        margin: 0 0 0rem;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      h6 {
+        font-weight: normal;
+        font-size: 1rem;
+        font-weight: 300;
+        margin: 0 0 0rem;
+        font-family: $sans;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+
 }
 </style>
 

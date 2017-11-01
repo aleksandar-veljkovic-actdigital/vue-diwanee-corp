@@ -38,7 +38,6 @@ export default new Router({
     }
   ],
   scrollBehavior (to, from, savedPosition) {
-    console.log('sb')
     return { x: 0, y: 0 }
   }
 });
