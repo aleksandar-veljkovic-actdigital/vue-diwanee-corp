@@ -6,6 +6,7 @@
     <div v-for="cpnt in bodyElements">
       <component  v-bind:is="cpnt.type" :data="cpnt.data"></component>
     </div>
+    <Loading v-show='loading' />
   </div>
 
 </template>
@@ -20,6 +21,7 @@
   import textComponent from './blocks/InArticle-text'
   import sliderComponent from './blocks/InArticle-slider'
   import diwanee_imageComponent from './blocks/InArticle-diwanee_image'
+  import Loading from '@/components/blocks/Loading'
 
   export default {
 
@@ -33,6 +35,7 @@
         article: {},
         bodyElements: [],
         selectedComponent: "",
+        loading: true,
       }
     },
 
@@ -42,6 +45,7 @@
       textComponent,
       diwanee_imageComponent,
       sliderComponent,
+      Loading,
     },
 
     props: [
@@ -56,6 +60,7 @@
           function(response){
             _this.article = response.data;
             _this.parseBodyElements(_this.article);
+          _this.loading = false;
           },
           function(response){
             console.log('this.$http.get error');

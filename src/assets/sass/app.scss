@@ -25,6 +25,15 @@ $bottom: 2rem;
   padding-right: $p;
 }
 
+@mixin center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 @mixin noselect {
   -webkit-touch-callout: none;
     -webkit-user-select: none;

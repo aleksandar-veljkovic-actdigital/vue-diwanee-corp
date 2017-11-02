@@ -47,6 +47,8 @@
         </router-link>
       </article>
 
+      <Loading v-show='loading' />
+
     </section>
 
   </div>
@@ -235,11 +237,18 @@ a:visited, a:visited h2 {
 
 <script>
 
+import Loading from '@/components/blocks/Loading'
+
 export default {
+
   created() {
     this.getTags();
     this.getArticles();
     window.__articlesFiltered = this;
+  },
+
+  components: {
+    Loading
   },
 
   props: [
@@ -266,6 +275,7 @@ export default {
         subcategoriesDisplay: []
       },
       tags: [],
+      loading: true
     }
   },
 
@@ -304,6 +314,7 @@ methods: {
     .then(function(response){
       _this.articlesAll = response.data
       _this.articlesDisplay = response.data
+      _this.loading = false;
     });
   },
 
