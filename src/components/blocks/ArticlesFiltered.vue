@@ -146,6 +146,10 @@ a:visited, a:visited h2 {
     @include gutter;
     margin-bottom: 1.5rem;
     padding-left: 12.5%;
+
+    @media (max-width: 1200px) {
+      padding-left: 0;
+    }
     h3 {
       margin: 0 0 1.8rem;
       text-transform: uppercase;
@@ -165,6 +169,8 @@ a:visited, a:visited h2 {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
+      font-family: $sans;
+      font-size: 1rem;
       &:last-child {
         margin-right: 0;
       }
@@ -279,29 +285,8 @@ export default {
     }
   },
 
-  /* @toDo
-  watch: {
-  'articlesDisplay.0.img': {
-  handler: function(){  console.log('--'); }
-}
-},
-*/
-/*
-watch: {
-'img': function(){console.log('watch')},
-'articlesDisplay.img': function(){console.log('watch.')},
-'articlesDisplay.0.img': function(){  console.log('watch articlesDisplay.0.img'); }
 
-},
 
-computed: {
-'img': function(){console.log('computed')},
-'articlesDisplay.img': function(){console.log('computed.')},
-'articlesDisplay.0.img': function(){  console.log('computed articlesDisplay.0.img'); }
-
-},
-
-*/
 methods: {
 
   //
@@ -419,32 +404,6 @@ methods: {
       }
     });
     return _return;
-  },
-
-  articleImages: function(article) {
-    return article.elements.reduce(function(_imgs, element) {
-      switch (element.type) {
-        case 'diwanee_image' :
-        _imgs.diwanee_image.push( element.data.file.url );
-        break;
-        case 'slider_image' :
-        _imgs.slider_image.push( element.data.file.url );
-        break;
-        case 'video' :
-        _imgs.video.push( element.data.remote_id );
-        break;
-      }
-      return _imgs
-    }, {diwanee_image:[],slider_image:[],video:[]});
-  },
-
-  setDataImg: function(article) {
-
-    var imgs = this.articleImages(article);
-    if (!!imgs.diwanee_image[0]) article.img = imgs.diwanee_image[0];
-    else if (!!imgs.slider_image[0]) article.img = imgs.slider_image[0];
-    else if (!!imgs.video[0]) article.img =  'https://img.youtube.com/vi/'+imgs.video[0]+'/hqdefault.jpg';
-    else article.img =  "http://via.placeholder.com/350x200";
   },
 
 },

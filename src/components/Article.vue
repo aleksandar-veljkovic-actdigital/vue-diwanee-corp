@@ -34,7 +34,6 @@
       return {
         article: {},
         bodyElements: [],
-        selectedComponent: "",
         loading: true,
       }
     },
@@ -74,7 +73,7 @@
         _this.bodyElements = article.elements.reduce(function(total, element, ix){
           switch (element.type) {
             case "slider_image" :
-              if (article.elements[ix-1].type !== "slider_image") {
+              if (!article.elements[ix-1] || article.elements[ix-1].type !== "slider_image") {
                 total.push( {type:"sliderComponent", data:[element]} );
               }
               else {
